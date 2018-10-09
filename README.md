@@ -53,3 +53,24 @@ ficar na pasta META-INF(nome deve ser escrito em letras maiusculas) que seve ser
 	
 </persistence>
 
+
+
+<h2>Persistir os dados no banco de dados</h2>
+<p>Para realizar a gravação dos dados no banco de dados, após realizar os passos acima.</p>
+<p>Criar uma classe com o método main e criar um EntityManagerFactory e durante a criação do EntityManagerFactory ele recebe o nome que você 
+deu para seu arquivo de persistencia, no meu caso o nome foi escola (persistence-unit name="escola")</p>
+<p>Realizar o inicio da transação getTransaction().begin()</p>
+<p>Realizar a persistencia dos dados que você queria gravar no banco de dados persist(dados)</p>
+<p>Se tudo ocorreu como você queria realizar o commit para validar a transação getTransaction().commit()</p>
+<p>Importante! Sempre após a abertura da conexão com o banco de dados é necessário realizar o fechamento dessa transação close() </p>
+
+
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("escola");
+		EntityManager em = emf.createEntityManager();
+		
+		em.getTransaction().begin();
+		em.persist(dados que você quer persist no banco);
+		em.getTransaction().commit();
+		
+		em.close();
+		
